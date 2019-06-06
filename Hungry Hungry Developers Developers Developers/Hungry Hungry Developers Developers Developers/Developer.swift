@@ -14,7 +14,6 @@ class Developer {
 	let rightSpoon: Spoon
 	let name: String
 	var iteration: Int = 0
-	var giveUps: Int = 0
 
 	init(leftSpoon: Spoon, rightSpoon: Spoon, name: String) {
 		self.leftSpoon = leftSpoon
@@ -23,23 +22,10 @@ class Developer {
 	}
 
 	func think() {
-		var spoons = [leftSpoon, rightSpoon]
-		let rand = Int.random(in: 0...1)
-		pickUpSpoon(spoons.remove(at: rand))
-		for _ in 0...1000 {
-			let success = spoons[0].reachedFor(by: self)
-			if success {
-				eat()
-				return
-			} else {
-				usleep(50)
-			}
-		}
-		giveUp()
-	}
-
-	private func pickUpSpoon(_ spoon: Spoon) {
-		spoon.pickUp(by: self)
+		let (lowerSpoon, upperSpoon) = leftSpoon.index < rightSpoon.index ? (leftSpoon, rightSpoon) : (rightSpoon, leftSpoon)
+		lowerSpoon.pickUp(by: self)
+		upperSpoon.pickUp(by: self)
+//		print("\(name): I can think now! \(iteration)")
 	}
 
 	func eat() {
@@ -51,16 +37,10 @@ class Developer {
 		leftSpoon.putDown(by: self)
 	}
 
-	func giveUp() {
-		giveUps += 1
-		print("\(name): C'mon guys... Share! \(giveUps)")
-		rightSpoon.putDown(by: self)
-		leftSpoon.putDown(by: self)
-	}
-
 	func run() {
 		while true {
 			think()
+			eat()
 			usleep(1)
 		}
 	}

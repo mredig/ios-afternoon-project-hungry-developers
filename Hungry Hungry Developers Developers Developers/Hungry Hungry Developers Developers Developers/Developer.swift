@@ -23,23 +23,8 @@ class Developer {
 	}
 
 	func think() {
-		var spoons = [leftSpoon, rightSpoon]
-		let rand = Int.random(in: 0...1)
-		pickUpSpoon(spoons.remove(at: rand))
-		for _ in 0...1000 {
-			let success = spoons[0].reachedFor(by: self)
-			if success {
-				eat()
-				return
-			} else {
-				usleep(50)
-			}
-		}
-		giveUp()
-	}
-
-	private func pickUpSpoon(_ spoon: Spoon) {
-		spoon.pickUp(by: self)
+		leftSpoon.pickUp(by: self)
+		rightSpoon.pickUp(by: self)
 	}
 
 	func eat() {
@@ -51,16 +36,10 @@ class Developer {
 		leftSpoon.putDown(by: self)
 	}
 
-	func giveUp() {
-		giveUps += 1
-		print("\(name): C'mon guys... Share! \(giveUps)")
-		rightSpoon.putDown(by: self)
-		leftSpoon.putDown(by: self)
-	}
-
 	func run() {
 		while true {
 			think()
+			eat()
 			usleep(1)
 		}
 	}

@@ -16,22 +16,13 @@ class Spoon {
 		self.index = index
 	}
 
-	func reachedFor(by developer: Developer) -> Bool {
-		let pickedUp = lock.try()
-		if pickedUp {
-//			print("spoon \(index) UP (\(developer.name))")
-			return true
-		}
-		return false
-	}
-
 	func pickUp(by developer: Developer) {
 		lock.lock()
-//		print("spoon \(index) UP (\(developer.name))")
+		print("spoon \(index) UP (\(developer.name))")
 	}
 
 	func putDown(by developer: Developer) {
 		lock.unlock()
-//		print("spoon \(index) DOWN (\(developer.name))")
+		print("spoon \(index) DOWN (\(developer.name))")
 	}
 }

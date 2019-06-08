@@ -13,15 +13,15 @@ func partOneSetup() -> [Developer] {
 	let spoon2 = Spoon(index: 2)
 	let spoon3 = Spoon(index: 3)
 	let spoon4 = Spoon(index: 4)
-//	let spoon5 = Spoon(index: 5)
+	let spoon5 = Spoon(index: 5)
 
 	let spencer = Developer(leftSpoon: spoon1, rightSpoon: spoon2, name: "Mr. Curtis")
 	let woz = Developer(leftSpoon: spoon2, rightSpoon: spoon3, name: "Woz")
 	let paul = Developer(leftSpoon: spoon3, rightSpoon: spoon4, name: "Paul")
-	let ben = Developer(leftSpoon: spoon4, rightSpoon: spoon1, name: "Ben")
-//	let steveBalmer = Developer(leftSpoon: spoon5, rightSpoon: spoon1, name: "Steve Balmer") // DEVELOPERS DEVELOPERS DEVELOPERS DEVELOPERS
+	let ben = Developer(leftSpoon: spoon4, rightSpoon: spoon5, name: "Ben")
+	let steveBalmer = Developer(leftSpoon: spoon5, rightSpoon: spoon1, name: "Steve Balmer") // DEVELOPERS DEVELOPERS DEVELOPERS DEVELOPERS
 
-	let developers = [spencer, woz, paul, ben]
+	let developers = [spencer, woz, paul, ben, steveBalmer]
 	return developers
 }
 
